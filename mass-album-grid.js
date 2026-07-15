@@ -234,9 +234,77 @@ class MassAlbumGrid extends HTMLElement {
   static getStubConfig() {
     return { entities: ["media_player.example"] };
   }
+
+  static getConfigElement() {
+    return document.createElement("mass-album-grid-editor");
+  }
+}
+
+class MassAlbumGridEditor extends HTMLElement {
+  setConfig(config) {
+    this._config = config;
+    this._render();
+  }
+
+  set hass(hass) {
+    this._hass = hass;
+    this._render();
+  }
+
+  get _schema() {
+    return [
+      {
+        name: "entities",
+        selector: { entity: { multiple: true, filter: { domain: "media_player" } } },
+      },
+      { name: "title", selector: { text: {} } },
+      { name: "columns", selector: { number: { min: 1, max: 12, mode: "box" } } },
+      { name: "favorites_only", selector: { boolean: {} } },
+      { name: "config_entry_id", selector: { text: {} } },
+    ];
+  }
+
+  _computeLabel(schema) {
+    const labels = {
+      entities: "Media player entities",
+      title: "Title (optional)",
+      columns: "Columns (optional, default responsive)",
+      favorites_only: "Favourites only",
+      config_entry_id: "Music Assistant config entry ID (advanced, only needed with multiple instances)",
+    };
+    return labels[schema.name] || schema.name;
+  }
+
+  _valueChanged(ev) {
+    const config = { ...ev.detail.value };
+    if (!config.title) delete config.title;
+    if (!config.columns) delete config.columns;
+    if (!config.config_entry_id) delete config.config_entry_id;
+    if (!config.favorites_only) delete config.favorites_only;
+    this.dispatchEvent(
+      new CustomEvent("config-changed", {
+        detail: { config },
+        bubbles: true,
+        composed: true,
+      })
+    );
+  }
+
+  _render() {
+    if (!this._hass || !this._config) return;
+    this.innerHTML = "";
+    const form = document.createElement("ha-form");
+    form.hass = this._hass;
+    form.data = this._config;
+    form.schema = this._schema;
+    form.computeLabel = this._computeLabel;
+    form.addEventListener("value-changed", (ev) => this._valueChanged(ev));
+    this.appendChild(form);
+  }
 }
 
 customElements.define("mass-album-grid", MassAlbumGrid);
+customElements.define("mass-album-grid-editor", MassAlbumGridEditor);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: "mass-album-grid",
