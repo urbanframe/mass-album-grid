@@ -16,6 +16,9 @@ It shows every album in your Music Assistant library as a grid of artwork. Tappi
 - Visual editor — configure entirely through the Lovelace UI, no YAML required
 - Zero dependencies, single file, no build step
 
+<img width="518" height="745" alt="image" src="https://github.com/user-attachments/assets/a7234d23-aafa-4009-be4f-6be2d2bdc673" />
+
+
 ## Requirements
 
 - Home Assistant with the [Music Assistant](https://www.home-assistant.io/integrations/music_assistant/) integration installed and configured
@@ -30,6 +33,9 @@ It shows every album in your Music Assistant library as a grid of artwork. Tappi
    **Via the UI:** Settings → Dashboards → ⋮ (top-right menu) → Resources → Add resource
    - URL: `/local/mass-album-grid.js`
    - Resource type: **JavaScript module**
+
+<img width="1033" height="1195" alt="image" src="https://github.com/user-attachments/assets/89eb0ac7-758d-4421-a3e6-2e75509e56b7" />
+
 
    **Or via YAML** (if you manage Lovelace in YAML mode):
 
