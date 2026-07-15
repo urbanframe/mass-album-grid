@@ -26,7 +26,19 @@ It shows every album in your Music Assistant library as a grid of artwork. Tappi
 
 ## Installation
 
-1. Download `mass-album-grid.js` and copy it to your Home Assistant `config/www/` folder (create the folder if it doesn't exist).
+### Via HACS (recommended)
+
+This card isn't yet in the HACS default store, so add it as a custom repository:
+
+1. Open **HACS** in your Home Assistant instance.
+2. Go to **Frontend** → click the three-dot menu → **Custom repositories**.
+3. Add `https://github.com/urbanframe/mass-album-grid` with category **Lovelace**.
+4. Search for **Music Assistant Album Grid** and install it.
+5. Reload your browser.
+
+### Manual
+
+1. Download `mass-album-grid.js` from the [latest release](https://github.com/urbanframe/mass-album-grid/releases/latest) and copy it to your Home Assistant `config/www/` folder (create the folder if it doesn't exist).
 
 2. Register it as a dashboard resource. Either:
 
