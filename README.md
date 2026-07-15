@@ -13,6 +13,7 @@ It shows every album in your Music Assistant library as a grid of artwork. Tappi
 - Follows your Home Assistant theme (light/dark)
 - Keyboard accessible — tab to an album, press Enter or Space to play
 - Optional favourites-only mode
+- Visual editor — configure entirely through the Lovelace UI, no YAML required
 - Zero dependencies, single file, no build step
 
 ## Requirements
@@ -41,11 +42,13 @@ It shows every album in your Music Assistant library as a grid of artwork. Tappi
 
 3. Hard-refresh your browser (Ctrl+Shift+R / Cmd+Shift+R). On the mobile companion app: Settings → Companion app → Debugging → Reset frontend cache, then restart the app.
 
-The card then appears in the card picker as **Music Assistant Album Grid**, or you can add it manually with YAML.
+The card then appears in the card picker as **Music Assistant Album Grid**, with a visual editor for setup — or you can configure it manually with YAML.
 
 ## Configuration
 
-Minimal config:
+The card has a built-in UI editor: add it from the card picker and fill in the form (pick your media players, optional title, columns, favourites-only, etc.). Click **Edit card** on any existing instance to change settings the same way.
+
+For YAML mode, minimal config:
 
 ```yaml
 type: custom:mass-album-grid
@@ -64,7 +67,7 @@ All options:
 | `favorites_only` | boolean | no | `false` | Only show albums marked as favourites in Music Assistant. |
 | `config_entry_id` | string | no | auto-detected | Only needed if you run more than one Music Assistant instance. |
 
-Full example:
+Full YAML example:
 
 ```yaml
 type: custom:mass-album-grid
